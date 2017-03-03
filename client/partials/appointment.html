@@ -1,0 +1,15 @@
+<div ng-controller="userController">
+<div ng-controller="appointmentController">
+  <h1>New appointment</h1>
+  <p ng-repeat="error in appointment_errors"> Error! {{error}}</p>
+  <form name="myForm"ng-submit="addAppointment(curUser)">
+    <label>Date: <input type="date" ng-model="appointment.date"></label>
+    <label>Time: <input name="time" type="time" ng-model="appointment.time" min="08:00:00" max="17:00:00"></label>
+    <p ng-if=!myForm.time.$valid>Office hours are 8AM to 5PM</p>
+    <br><br>
+    <label>Complaint: <textarea ng-model="appointment.complaint" rows="8" cols="80"></textarea></label>
+    <input type="submit" value="Make Appointment">
+  </form>
+  <a href="#!/dashboard">Cancel</a>
+</div>
+</div>

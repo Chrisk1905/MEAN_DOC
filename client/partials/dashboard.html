@@ -1,0 +1,32 @@
+<div ng-controller="userController">
+<div ng-controller="appointmentController">
+  <p>Hello {{curUser.name}}</p>
+  <a href="/logout">logout</a>
+  <br>
+  <h1>Doctor's Appointments</h1>
+  <label>Search: <input ng-model="searchText"></label>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient Name</th>
+        <th>Complaint</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat ="appointment in all_appointments | filter:searchText | orderBy:'-date':reverse=true">
+        <td>{{appointment.date | amDateFormat:'MMMM, Do YYYY'}}</td>
+        <td>{{appointment.time | amDateFormat: 'h:mm:ss a'}}</td>
+        <td>{{appointment._user.name}}</td>
+        <td>{{appointment.complaint}}</td>
+        <td><form ng-submit="cancel(appointment)" ng-if="curUser._id == appointment._user._id"> <button type="submit"> Cancel </button> </form></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <a href="#!/addAppointment"> Add New Appointment </a>
+</div>
+</div>
